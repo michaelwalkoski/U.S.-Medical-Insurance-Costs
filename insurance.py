@@ -8,24 +8,24 @@ with open('insurance.csv', 'r') as csvfile:
         count += 1
         patients[count] = row
 
-total_patients = len(patients)
-
 
 def get_sum(column):  # Sum all numeric entries
-    sum = 0
+    total = 0
     for patient in patients:
         row_data = float(patients[patient][column])
-        sum += row_data
-    return sum
+        total += row_data
+    return total
 
 
-def get_values(column, str):  # Sum all string entries
-    sum = 0
+def get_values(column, string):  # Sum all string entries
+    total = 0
     for patient in patients:
-        if patients[patient][column] == str:
-            sum += 1
-    return sum
+        if patients[patient][column] == string:
+            total += 1
+    return total
 
+
+total_patients = len(patients)
 
 print('There are {} patient records'.format(total_patients))
 total_males = get_values('sex', 'male')  # Total number of male patients
