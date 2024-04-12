@@ -3,29 +3,32 @@ import csv
 patients = {}  # Dictionary of all patient data
 count = 0  # Counter to track row index
 with open('insurance.csv', 'r') as csvfile:
-  reader = csv.DictReader(csvfile)
-  for row in reader:
-    count += 1
-    patients[count] = row
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        count += 1
+        patients[count] = row
 
 total_patients = len(patients)
 
-def get_sum(column): # Sum all numeric entries
+
+def get_sum(column):  # Sum all numeric entries
     sum = 0
     for patient in patients:
         row_data = float(patients[patient][column])
         sum += row_data
     return sum
 
-def get_values(column, str): # Sum all string entries
+
+def get_values(column, str):  # Sum all string entries
     sum = 0
     for patient in patients:
         if patients[patient][column] == str:
             sum += 1
     return sum
 
+
 print('There are {} patient records'.format(total_patients))
-total_males = get_values('sex', 'male') # Total number of male patients
+total_males = get_values('sex', 'male')  # Total number of male patients
 print('There are {} males and {} females.'.format(total_males, (total_patients - total_males)))
 
 average_age = round(get_sum('age') / total_patients)
