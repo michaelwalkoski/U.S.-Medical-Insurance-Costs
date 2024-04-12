@@ -17,8 +17,10 @@ def get_sum(column):
         sum += row_data
     return sum
 
+print('There are {} patient records'.format(total_patients))
+
 average_age = round(get_sum("age") / total_patients)
 print('The average patient age is: {}'.format(average_age))
 
 average_charges = round(get_sum("charges") / total_patients, 2)
-print('The average charge is: ${}'.format(average_charges))
+print('The average charges are: ${}'.format(average_charges))
