@@ -22,5 +22,3 @@ print('The average patient age is: {}'.format(average_age))
 
 average_charges = round(get_sum("charges") / total_patients, 2)
 print('The average charge is: ${}'.format(average_charges))
-
-
