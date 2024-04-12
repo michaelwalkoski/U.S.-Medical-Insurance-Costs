@@ -1,33 +1,26 @@
 import csv
 
-patients = {}
-age = []
-sex = []
-bmi = []
-children = []
-smoker = []
-region = []
-charges = []
+patients = {}  # Dictionary of all patient data
+count = 0  # Counter to track row index
 with open("insurance.csv", 'r') as csvfile:
-    insurance_data = csv.reader(csvfile)
-    # Rows: age, sex, bmi, children, smoker, region, charges
-    for row in insurance_data:
-        age.append(row[0])
-        sex.append(row[1])
-        bmi.append(row[2])
-        children.append(row[3])
-        smoker.append(row[4])
-        region.append(row[5])
-        charges.append(row[6])
+  reader = csv.DictReader(csvfile)
+  for row in reader:
+    count += 1
+    patients[count] = row
 
-total_entries = len(age[1:])
-for i in range(1, total_entries):
-    patients[i] = {'Age': age[i],
-                   'Sex': sex[i],
-                   'BMI': bmi[i],
-                   'Children': children[i],
-                   'Smoker': smoker[i],
-                   'Region': region[i],
-                   'Charges': charges[i]}
+total_patients = len(patients)
 
-print(patients)
+def get_sum(column):
+    sum = 0
+    for patient in patients:
+        row_data = float(patients[patient][column])
+        sum += row_data
+    return sum
+
+average_age = round(get_sum("age") / total_patients)
+print('The average patient age is: {}'.format(average_age))
+
+average_charges = round(get_sum("charges") / total_patients, 2)
+print('The average charge is: ${}'.format(average_charges))
+
+
